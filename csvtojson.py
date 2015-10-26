@@ -4,7 +4,7 @@
 
 # Writes to output/candyJar::key.json
 
-# Then invoke /opt/couchbase/bin/cbdocloader -u <userID> -p <password> -b <bucketname> output
+# Then invoke /opt/couchbase/bin/cbdocloader -u <userID> -p <password> -n host:port -b <bucketname> output
 
 import json
 import csv
