@@ -8,27 +8,30 @@
 
 import json
 import csv
-import os
-import sys
+import os, sys
 
-dir='output'
-os.mkdir(dir)
 suffix='.json'
+depth=4
+dir='output'
+if not os.path.exists(dir):
+    os.makedirs(dir)
 
 for arg in sys.argv[1:]:
     with open(arg,'r') as f:
         for line in f:
             key,json=line.rstrip().split(',',1)
             key=key.strip().rstrip()
+
+            letters=list(key)
+            keychars=letters[0:depth]
+            keychars.insert(0,dir)
+            s=os.sep
+            tdir=s.join(keychars)
+            if not os.path.exists(tdir):
+                os.makedirs(tdir)
+
             json=json.strip('\'')
-            jsonfile=open(dir+os.sep+'candyJar::'+key+suffix,'w')
+            jsonfile=open(tdir+os.sep+'candyJar::'+key+suffix,'w')
             jsonfile.write('{:s}\n'.format(json))
 
-        
-#        letters=list(key)
-#        (k1,k2)=letters[0:1]
-#        print('{:s}/{%s}'.format(k1,k2))
-
-
-#Administrator/Administrator
 
