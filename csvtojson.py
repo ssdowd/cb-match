@@ -2,7 +2,7 @@
 
 # Invoke as <this_script> file ...
 
-# Writes to output/candyJar::key.json
+# Writes to output/a/b/c/d/candyJar::key.json
 
 # Then invoke /opt/couchbase/bin/cbdocloader -u <userID> -p <password> -n host:port -b <bucketname> output
 
@@ -11,6 +11,7 @@ import csv
 import os, sys
 
 suffix='.json'
+prefix='candyJar::'
 depth=4
 dir='output'
 if not os.path.exists(dir):
@@ -31,7 +32,7 @@ for arg in sys.argv[1:]:
                 os.makedirs(tdir)
 
             json=json.strip('\'')
-            jsonfile=open(tdir+os.sep+'candyJar::'+key+suffix,'w')
+            jsonfile=open(tdir+os.sep+prefix+key+suffix,'w')
             jsonfile.write('{:s}\n'.format(json))
 
 
